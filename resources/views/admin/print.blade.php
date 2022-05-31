@@ -33,18 +33,20 @@
                     <div class="row">
                         <div class="col-12">
                             <h4>
-                                <i class="fa fa-globe"></i> {{ config('app.name') }}
+                                
                                 <small class="float-right">Date: {{ date('l, d-M-Y h:i:s A') }}</small>
                             </h4>
                         </div>
                         <!-- /.col -->
                     </div>
                     <!-- info row -->
+                    <img src="{{ asset('assets/backend/img/Login.png') }}" style= "width:30%; margin-left:-2%" ></br></br></br>
                     <div class="row invoice-info">
                         <div class="col-sm-4 invoice-col">
+                        
                             From
                             <address>
-                                <strong>Admin, {{ config('app.name') }}</strong><br>
+                                
                                 {{ $company->address }}<br>
                                 {{ $company->city }} - {{ $company->zip_code }}, {{ $company->country }}<br>
                                 Phone: (+880) {{ $company->mobile }} {{ $company->phone !== null ? ', +88'.$company->phone : ''  }}<br>
@@ -62,8 +64,10 @@
                                 Email: {{ $customer->email }}
                             </address>
                         </div>
+                        </br></br></br></br></br></br>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
+</br>
                             <b>Payment Due:</b> {{ Cart::total() }}<br>
                             <b>Order Status:</b> <span class="badge badge-warning">Pending</span><br>
                             <b>Account:</b> {{ $customer->account_number }}
@@ -73,14 +77,19 @@
                     <!-- /.row -->
 
                     <!-- Table row -->
+</br>
+</br>
+</br>
+</br>
                     <div class="row">
                         <div class="col-12 table-responsive">
                             <table class="table table-bordered text-center">
                                 <thead>
                                 <tr>
                                     <th>S.N</th>
-                                    <th>Item</th>
+                                    <th>Product Name</th>
                                     <th>Quantity</th>
+                                    <th>SSN</th>
                                     <th>Unit Cost</th>
                                     <th>Subtotal</th>
                                 </tr>
@@ -91,6 +100,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $content->name }}</td>
                                         <td>{{ $content->qty }}</td>
+                                        <td style="width:15%">{{ $content->options[0]}}</td>
+                             
                                         <td>{{ number_format($content->price, 2) }}</td>
                                         <td>{{ $content->subtotal() }}</td>
                                     </tr>
@@ -102,6 +113,10 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+                            <img src="{{ asset('assets/backend/img/due.png') }}" style= "width:90%; margin-left:120%; margin-top:-100%" >
+
+
+                    
 
                     <div class="row">
                         <!-- accepted payments column -->
@@ -123,7 +138,9 @@
                                         <td class="text-right">{{ Cart::total() }}</td>
                                     </tr>
                                 </table>
+                                
                             </div>
+                            <img src="{{ asset('assets/backend/img/due.png') }}" style="width:90%; margin-left:-150%; opacity:.5" >
                         </div>
                         <!-- /.col -->
                     </div>

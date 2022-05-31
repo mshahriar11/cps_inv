@@ -43,6 +43,7 @@ class CartController extends Controller
           'name' => 'required',
           'qty' => 'required',
           'price' => 'required',
+          'ssn' => 'required'
         ];
         $validator = Validator::make($inputs, $rules);
         if ($validator->fails())
@@ -53,9 +54,11 @@ class CartController extends Controller
         $id = $request->input('id');
         $name = $request->input('name');
         $qty = $request->input('qty');
-        $price = $request->input('price');
 
-        $add = Cart::add(['id' => $id, 'name' => $name, 'qty' => $qty, 'price' => $price, 'weight' => 1 ]);
+        $price = $request->input('price');
+        $ssn = $request->input('ssn');
+
+        $add = Cart::add(['id' => $id, 'name' => $name, 'qty' => $qty, 'price' => $price,'weight' => 1,'options' => [$ssn]]);
         if ($add)
         {
             Toastr::success('Product successfully added to cart', 'Success');
@@ -100,10 +103,20 @@ class CartController extends Controller
     public function update(Request $request, $rowId)
     {
         $qty = $request->input('qty');
-        Cart::update($rowId, $qty);
+        $ssn = $request->input('ssn');
 
-        Toastr::success('Cart Updated Successfully', 'Success');
-        return redirect()->back();
+        if( $ssn ){
+            Cart::update($rowId,['qty' => $qty,'options' => [$ssn]]);
+
+            Toastr::success('Cart Updated Successfully', 'Success');
+            return redirect()->back();
+        }
+        else{
+            Toastr::warning('Please add ssn', 'Warning');
+            return redirect()->back();
+        }
+
+        
     }
 
     /**

@@ -51,18 +51,7 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Payment Status</th>
-                                        <th>Order Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+                                   
                                     <tbody>
                                     @foreach($approveds as $key => $order)
                                         <tr>

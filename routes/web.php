@@ -63,4 +63,12 @@ Route::group(['as'=>'admin.', 'prefix' => 'admin', 'middleware' => 'auth' ], fun
     Route::get('order-print/{order_id}', 'InvoiceController@order_print')->name('invoice.order_print');
     Route::post('invoice-final', 'InvoiceController@final_invoice')->name('invoice.final_invoice');
 
+    //brand route
+    Route::get("brand-alll","BrandController@brand_all")->name("brand.all");
+    Route::get("create-brand","BrandController@create_brand_page")->name("brand.create.page");
+    Route::post("create-brand","BrandController@create_brand")->name("brand.create");
+
+    Route::get("edit-brand/{id}","BrandController@edit_brand_page")->name("brand.edit.page");
+    Route::post("edit-brand/{id}","BrandController@edit_brand")->name("brand.edit");
+
 });

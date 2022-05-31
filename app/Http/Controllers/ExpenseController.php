@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use App\Expense;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -28,7 +29,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('admin.expense.create');
+        $employees = Employee::orderBy("id","desc")->select("id","name")->get();
+
+        return view('admin.expense.create', compact('employees'));
     }
 
     /**
@@ -42,7 +45,8 @@ class ExpenseController extends Controller
         $inputs = $request->except('_token');
         $rules = [
           'name' => 'required | min:3',
-          'amount' => 'required'
+          'amount' => 'required',
+          'employee_id' => 'required|integer'
         ];
 
         $validator = Validator::make($inputs, $rules);
@@ -59,6 +63,7 @@ class ExpenseController extends Controller
         $expense->month = $date->format('F');
         $expense->year = $date->format('Y');
         $expense->date = $date->format('Y-m-d');
+        $expense->employee_id = $request->employee_id;
         $expense->save();
 
         Toastr::success('Expense added successfully', 'Success');
@@ -84,7 +89,9 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        return view('admin.expense.edit', compact('expense'));
+        $employees = Employee::orderBy("id","desc")->select("id","name")->get();
+
+        return view('admin.expense.edit', compact('expense', 'employees'));
     }
 
     /**
@@ -99,7 +106,8 @@ class ExpenseController extends Controller
         $inputs = $request->except('_token');
         $rules = [
             'name' => 'required | min:3',
-            'amount' => 'required'
+            'amount' => 'required',
+            'employee_id' => 'required|integer'
         ];
 
         $validator = Validator::make($inputs, $rules);
@@ -110,6 +118,7 @@ class ExpenseController extends Controller
 
         $expense->name = $request->input('name');
         $expense->amount = $request->input('amount');
+        $expense->employee_id = $request->employee_id;
         $expense->save();
 
         Toastr::success('Expense updated successfully', 'Success');
@@ -134,7 +143,7 @@ class ExpenseController extends Controller
     public function today_expense()
     {
         $today = date('Y-m-d');
-        $expenses = Expense::latest()->where('date', $today)->get();
+        $expenses = Expense::latest()->whereDate('date', $today)->get();
         return view('admin.expense.today', compact('expenses'));
     }
 

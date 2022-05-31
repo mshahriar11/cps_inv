@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+         <img src="{{ asset('assets/backend/img/Login.png') }}" alt=""  style= "width: 40%; margin-left: 30%; margin-bottom: 2%">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -53,13 +54,13 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-warring" style="background-color: orange">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="color: orange">
+                                        {{ __('Password bhule geso?') }}
                                     </a>
                                 @endif
                             </div>

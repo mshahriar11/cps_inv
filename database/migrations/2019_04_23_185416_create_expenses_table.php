@@ -20,6 +20,9 @@ class CreateExpensesTable extends Migration
             $table->string('month');
             $table->string('year');
             $table->string('date');
+            $table->unsignedBigInteger("employee_id");
+
+            $table->foreign("employee_id")->references("id")->on("employees")->onDelete("cascade");
             $table->timestamps();
         });
     }

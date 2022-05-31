@@ -66,27 +66,16 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Product Code</label>
-                                                <input type="text" class="form-control" name="code" value="{{ old('code') }}" placeholder="Enter Product Code">
+                                                <label>Quantity</label>
+                                                <input type="number" class="form-control" name="code" value="{{ old('code') }}" placeholder="Enter Quantity">
                                             </div>
                                             <div class="form-group">
-                                                <label>Garage</label>
-                                                <select name="garage" class="form-control">
-                                                    <option value="" disabled selected>Select a Garage</option>
-                                                    <option value="A">Garage A</option>
-                                                    <option value="B">Garage B</option>
-                                                    <option value="C">Garage C</option>
-                                                    <option value="D">Garage D</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Route</label>
-                                                <select name="route" class="form-control">
-                                                    <option value="" disabled selected>Select a Route</option>
-                                                    <option value="A">Route A</option>
-                                                    <option value="B">Route B</option>
-                                                    <option value="C">Route C</option>
-                                                    <option value="D">Route D</option>
+                                                <label>Brand Name</label>
+                                                <select name="brand_id" class="form-control">
+                                                    <option value="" disabled selected>Select a Brand</option>
+                                                    @foreach($brands as $brand)
+                                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -103,10 +92,6 @@
                                             <div class="form-group">
                                                 <label>Buying Date</label>
                                                 <input type="date" class="form-control" name="buying_date" value="{{ old('buying_date') }}">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Expire Date</label>
-                                                <input type="date" class="form-control" name="expire_date" value="{{ old('expire_date') }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Buying Price</label>

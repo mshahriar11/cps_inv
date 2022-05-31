@@ -55,23 +55,17 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
+                                        <th>Employee</th>
                                         <th>Expense Title</th>
                                         <th>Amount</th>
                                         <th>Date</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Expense Title</th>
-                                        <th>Amount</th>
-                                        <th>Month</th>
-                                    </tr>
-                                    </tfoot>
                                     <tbody>
                                     @foreach($expenses as $key => $expense)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td>{{ $expense->employee->name }}</td>
                                             <td>{{ $expense->name }}</td>
                                             <td>{{ number_format($expense->amount, 2) }}</td>
                                             <td>{{ $expense->date->toFormattedDateString() }}</td>
@@ -132,7 +126,7 @@
             const swalWithBootstrapButtons = swal.mixin({
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
+                buttonsStyling: true,
             })
 
             swalWithBootstrapButtons({

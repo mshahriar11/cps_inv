@@ -21,7 +21,7 @@
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Dashboard</li>
+							<li class="breadcrumb-item active">Dashbossard</li>
 						</ol>
 					</div>
 				</div>
@@ -204,17 +204,27 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">This Year's Paid</span>
                                 <span class="info-box-number">{{ $year->sum('pay') }} Taka</span>
+
+                                {{-- 
+
                                 @php
 
                                     if($previous_month->sum('pay') != 0)
                                     {
-                                        $percentage = (($year->sum('pay') - $previous_year->sum('pay'))/ $previous_year->sum('pay'))*100;
+                                        $percentage = (($year->sum('pay') - $previous_year->sum('pay')) / $previous_year->sum('pay'))*100;
                                     } else {
                                         $percentage = 0;
                                     }
 
 
                                 @endphp
+                                
+                                --}}
+
+
+
+
+
 
                                 <div class="progress">
                                     <div class="progress-bar" style="width: {{ number_format(abs($percentage), 2) }}%"></div>

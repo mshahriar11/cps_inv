@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h4>
-                                        <i class="fa fa-globe"></i> {{ config('app.name') }}
+                                        <img src="{{ asset('assets/backend/img/Login.png') }}" style= "width:20%" >
                                         <small class="float-right">Date: {{ date('l, d-M-Y h:i:s A') }}</small>
                                     </h4>
                                 </div>
@@ -90,6 +90,7 @@
                                             <th>Product Name</th>
                                             <th>Product Code</th>
                                             <th>Quantity</th>
+                                            <th>SSN</th>
                                             <th>Unit Cost</th>
                                             <th>Subtotal</th>
                                         </tr>
@@ -101,8 +102,13 @@
                                                     <td>{{ $order_detail->product->name }}</td>
                                                     <td>{{ $order_detail->product->code }}</td>
                                                     <td>{{ $order_detail->quantity }}</td>
-                                                    <td>{{ $unit_cost = number_format($order_detail->unit_cost, 2) }}</td>
-                                                    <td>{{ number_format($unit_cost * $order_detail->quantity, 2) }}</td>
+                                                    <td style="width:20%">
+                                                        <textarea class="form-control" rows="1" readonly>
+                                                        {{ $order_detail->ssn }}
+                                                        </textarea>
+                                                    </td>
+                                                    <td>{{ $unit_cost = $order_detail->unit_cost }}</td>
+                                                    <td>{{ $unit_cost * $order_detail->quantity }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -123,11 +129,11 @@
                                             </tr>
                                             <tr>
                                                 <th>Pay</th>
-                                                <td class="text-right">{{ number_format($order->pay, 2) }}</td>
+                                                <td class="text-right">{{ $order->pay }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Due</th>
-                                                <td class="text-right">{{ number_format($order->due, 2) }}</td>
+                                                <td class="text-right">{{ $order->due }}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -138,12 +144,19 @@
                                         <table class="table">
                                             <tr>
                                                 <th style="width:50%">Subtotal:</th>
-                                                <td class="text-right">{{ number_format($order->sub_total, 2) }}</td>
+                                                <td class="text-right">{{ $order->sub_total }} Taka</td>
                                             </tr>
-                                            <tr>
+                                            
+
+                                            
+                                             {{--                                          
+                                                <tr>
                                                 <th>Tax (21%)</th>
-                                                <td class="text-right">{{ number_format($order->vat, 2) }}</td>
+                                                <td class="text-right">{{$order->vat }}</td>
                                             </tr>
+                                            --}}
+
+
                                             <tr>
                                                 <th>Total:</th>
                                                 <td class="text-right">{{ round($order->total) }} Taka</td>
@@ -158,11 +171,11 @@
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">
                                 <div class="col-12">
-                                    @if($order->order_status === 'approved')
+                                   
                                         <a href="{{ route('admin.invoice.order_print', $order->id) }}" target="_blank" class="btn btn-default">
                                             <i class="fa fa-print"></i> Print
                                         </a>
-                                    @endif
+                               
                                     @if($order->order_status === 'pending')
                                         <a href="{{ route('admin.order.confirm', $order->id) }}" class="btn btn-success float-right">
                                             <i class="fa fa-credit-card"></i>

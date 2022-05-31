@@ -52,19 +52,7 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>City</th>
-                                        <th>Shop Name</th>
-                                        <th>Account Holder</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
                                     @foreach($customers as $key => $customer)
                                         <tr>
@@ -152,7 +140,7 @@
             const swalWithBootstrapButtons = swal.mixin({
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
+                buttonsStyling: true,
             })
 
             swalWithBootstrapButtons({

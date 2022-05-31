@@ -47,14 +47,7 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Category Name</th>
-                                        <th>Total Products</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
                                     @foreach($categories as $key => $category)
                                         <tr>

@@ -4,5 +4,5 @@
 		Anything you want
 	</div>
 	<!-- Default to the left -->
-	<strong>Copyright &copy; 2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+	<strong>Copyright &copy; 2022 | Made by Mohammed Shahriar </strong>for Big T Foundation. | All rights reserved.
 </footer>

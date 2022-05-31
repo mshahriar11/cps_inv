@@ -71,23 +71,12 @@
                                                 <input type="text" class="form-control" name="code" value="{{ $product->code }}" placeholder="Enter Product Code">
                                             </div>
                                             <div class="form-group">
-                                                <label>Garage</label>
-                                                <select name="garage" class="form-control">
-                                                    <option value="" disabled>Select a Garage</option>
-                                                    <option value="A" {{ $product->garage == "A" ? 'selected' : '' }}>Garage A</option>
-                                                    <option value="B" {{ $product->garage == "B" ? 'selected' : '' }}>Garage B</option>
-                                                    <option value="C" {{ $product->garage == "C" ? 'selected' : '' }}>Garage C</option>
-                                                    <option value="D" {{ $product->garage == "D" ? 'selected' : '' }}>Garage D</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Route</label>
-                                                <select name="route" class="form-control">
-                                                    <option value="" disabled>Select a Route</option>
-                                                    <option value="A" {{ $product->route == 'A' ? 'selected' : '' }}>Route A</option>
-                                                    <option value="B" {{ $product->route == 'B' ? 'selected' : '' }}>Route B</option>
-                                                    <option value="C" {{ $product->route == 'C' ? 'selected' : '' }}>Route C</option>
-                                                    <option value="D" {{ $product->route == 'D' ? 'selected' : '' }}>Route D</option>
+                                                <label>Brand Name</label>
+                                                <select name="brand_id" class="form-control">
+                                                    <option value="" disabled selected>Select a Brand</option>
+                                                    @foreach($brands as $brand)
+                                                        <option value="{{ $brand->id }}" @if( $brand->id == $product->brand_id ) selected @endif >{{ $brand->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -105,10 +94,6 @@
                                             <div class="form-group">
                                                 <label>Buying Date</label>
                                                 <input type="date" class="form-control" name="buying_date" value="{{ $product->buying_date }}">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Expire Date</label>
-                                                <input type="date" class="form-control" name="expire_date" value="{{ $product->expire_date }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Buying Price</label>

@@ -59,18 +59,7 @@
                                         <th>Delete</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Product Title</th>
-                                        <th>Image</th>
-                                        <th>Customer Name</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Time</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($orders as $order)
                                         <tr>

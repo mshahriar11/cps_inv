@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use App\Supplier;
@@ -35,7 +36,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $suppliers = Supplier::all();
-        return view('admin.product.create', compact('categories', 'suppliers'));
+        $brands = Brand::orderBy("id","desc")->select("id","name")->where("is_active", true)->get();
+
+        return view('admin.product.create', compact('categories', 'suppliers', 'brands') );
     }
 
     /**
@@ -51,12 +54,10 @@ class ProductController extends Controller
             'name' => 'required | min:3',
             'category_id' => 'required| integer',
             'supplier_id' => 'required | integer',
+            'brand_id' => 'required | integer',
             'code' => 'required',
-            'garage' => 'required',
             'image' => 'required | image',
-            'route' => 'required',
             'buying_date' => 'required | date',
-            'expire_date' => 'date',
             'buying_price' => 'required',
             'selling_price' => 'required',
         ];
@@ -88,11 +89,9 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->category_id = $request->input('category_id');
         $product->supplier_id = $request->input('supplier_id');
+        $product->brand_id = $request->input('brand_id');
         $product->code = $request->input('code');
-        $product->garage = $request->input('garage');
-        $product->route = $request->input('route');
         $product->buying_date = $request->input('buying_date');
-        $product->expire_date = $request->input('expire_date');
         $product->buying_price = $request->input('buying_price');
         $product->selling_price = $request->input('selling_price');
         $product->image = $imageName;
@@ -123,7 +122,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $suppliers = Supplier::all();
-        return view('admin.product.edit', compact('product', 'categories', 'suppliers'));
+        $brands = Brand::orderBy("id","desc")->select("id","name")->where("is_active", true)->get();
+
+        return view('admin.product.edit', compact('product', 'categories', 'suppliers','brands'));
     }
 
     /**
@@ -141,11 +142,8 @@ class ProductController extends Controller
             'category_id' => 'required| integer',
             'supplier_id' => 'required | integer',
             'code' => 'required',
-            'garage' => 'required',
             'image' => 'nullable | image',
-            'route' => 'required',
             'buying_date' => 'nullable | date',
-            'expire_date' => 'nullable | date',
             'buying_price' => 'required',
             'selling_price' => 'required',
         ];
@@ -195,11 +193,9 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->category_id = $request->input('category_id');
         $product->supplier_id = $request->input('supplier_id');
+        $product->brand_id = $request->input('brand_id');
         $product->code = $request->input('code');
-        $product->garage = $request->input('garage');
-        $product->route = $request->input('route');
         $product->buying_date = $buying_date;
-        $product->expire_date = $expire_date;
         $product->buying_price = $request->input('buying_price');
         $product->selling_price = $request->input('selling_price');
         $product->image = $imageName;

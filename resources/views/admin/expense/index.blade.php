@@ -45,6 +45,7 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
+                                        <th>Employee</th>
                                         <th>Expense Title</th>
                                         <th>Amount</th>
                                         <th>Month</th>
@@ -53,21 +54,11 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Expense Title</th>
-                                        <th>Amount</th>
-                                        <th>Month</th>
-                                        <th>Year</th>
-                                        <th>Date</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
                                     <tbody>
                                     @foreach($expenses as $key => $expense)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td>{{ $expense->employee->name }}</td>
                                             <td>{{ $expense->name }}</td>
                                             <td>{{ number_format($expense->amount, 2) }}</td>
                                             <td>{{ $expense->month }}</td>

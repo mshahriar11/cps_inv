@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Order;
 use App\OrderDetail;
+use App\Product;
 use App\Setting;
 use Brian2694\Toastr\Facades\Toastr;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -57,6 +58,7 @@ class InvoiceController extends Controller
 
     public function final_invoice(Request $request)
     {
+
         $inputs = $request->except('_token');
         $rules = [
           'payment_status' => 'required',
@@ -97,10 +99,19 @@ class InvoiceController extends Controller
 
         foreach ($contents as $content)
         {
+            
+            $product = Product::where("id",$content->id)->first();
+
+            if( $product ){
+                $product->code -= $content->qty;
+                $product->save();
+            }
+
             $order_detail = new OrderDetail();
             $order_detail->order_id = $order_id;
             $order_detail->product_id = $content->id;
             $order_detail->quantity = $content->qty;
+            $order_detail->ssn = $content->options[0];
             $order_detail->unit_cost = $content->price;
             $order_detail->total = $content->total;
             $order_detail->save();
